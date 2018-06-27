@@ -5,7 +5,6 @@ name = "pypi"
 
 [packages]
 spotipy = "*"
-cement = "*"
 
 [dev-packages]
 pylint = "*"
