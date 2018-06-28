@@ -13,7 +13,8 @@ def cli(ctx, username):
 @cli.command()
 @click.pass_context
 def current_song(ctx):
-    ss = spotsort.SpotSort(spotify_client = spotify.Spotify(ctx.obj['username']))
+    ss = SpotSort(spotify_client = Spotify(ctx.obj['username']))
+    ss.start_this_song_session()
     
 @cli.command()
 @click.pass_context
@@ -44,8 +45,6 @@ def test_django():
 
     print(first_user.name)
     print(first_user.email)
-    ss = SpotSort(spotify_client = Spotify(ctx.obj['username']))
-    ss.start_this_song_session()
 
 
 if __name__ == '__main__':
