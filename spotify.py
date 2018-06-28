@@ -25,9 +25,6 @@ class Spotify:
             client_id=settings.SPOTIFY_CLIENT_ID,
             client_secret=settings.SPOTIFY_CLIENT_SECRET,
             redirect_uri=settings.SPOTIFY_REDIRECT_URI)
-    
-    def get_user_profile(self):
-        return self.client.me()
 
     def __handle_pagination(self, func):
         results = func
@@ -36,6 +33,9 @@ class Spotify:
             results = self.client.next(results)
             items.extend(results['items'])
         return items
+
+    def get_user_profile(self):
+        return self.client.me()
 
     def get_playlists(self, user_id):
         return self.__handle_pagination(self.client.user_playlists(user_id)) 
