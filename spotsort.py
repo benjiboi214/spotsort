@@ -1,5 +1,4 @@
 import click
-import spotify
 from tabulate import tabulate
 
 
@@ -20,9 +19,7 @@ class SpotSort:
 
     def __parse_string_list(self, string):
         parsed = [int(x.strip()) for x in string.split(',')]
-        print(parsed)
         valid = [x[0] for x in self.present_to_user]
-        print(valid)
         for selection in parsed:
             if selection not in valid:
                 raise click.BadParameter(f"Selected an invalid playlist: {selection}", param=string)
@@ -43,13 +40,39 @@ class SpotSort:
         return [playlists[x] for x in selected_indexes]
 
 
-@click.command()
-@click.argument('username')
-def main(username):
-    spotsort = SpotSort(spotify_client = spotify.Spotify(username))
-    spotsort.user_playlists = spotsort.spotify_client.get_playlists(spotsort.user_profile['id'])
+class Listen:
+    pass
 
-    spotsort.get_playlist_selection(spotsort.user_playlists)
+    # manage time state
+    # manage start playing
+    # manage stop playing
+    # manage collecting input for seeking
 
-if __name__ == '__main__':
-    main()
+    # Controls
+    ## Seek through song  - 1/8ths(?) through song per input using ms (seek_track(position_ms, device_id=None))
+    ## Categorise - Move down into the categorisation module
+    ## Pause - Pause Current Song (pause_playback(device_id=None))
+    ## Play - Resume Current Song (start_playback(device_id=None, context_uri=None, uris=None, offset=None))
+    ## Start Over - Seek to start of current song (seek_track(position_ms, device_id=None))
+    ## Skip - Move up to calling module with skip signal
+
+
+# Architecture
+## Entry points
+
+# Start Playlist Session
+#  - Select playlists to sort
+#  - Determine how sorting will work
+#  - Harvest Song URIs from playlists
+#  - For Each Song
+#  - - Play song
+#  - - Provide interface to control song
+#  - - Categorise Song
+#  - - Write Categories to data structure
+
+# I like this Song!
+# - Capture current song
+# - provide interface to control song
+# - categorise song
+# - Write Categories to data structure
+
