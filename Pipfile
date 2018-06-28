@@ -8,6 +8,7 @@ spotipy = "*"
 click = "*"
 python-dotenv = "*"
 tabulate = "*"
+django = "*"
 
 [dev-packages]
 pylint = "*"
