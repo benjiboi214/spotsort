@@ -102,3 +102,9 @@ venv.bak/
 
 # mypy
 .mypy_cache/
+
+# spotipy token cache
+.cache-*
+
+# vscode settings
+.vscode/

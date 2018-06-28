@@ -5,6 +5,9 @@ name = "pypi"
 
 [packages]
 spotipy = "*"
+click = "*"
+python-dotenv = "*"
+tabulate = "*"
 
 [dev-packages]
 pylint = "*"
