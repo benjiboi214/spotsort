@@ -22,6 +22,7 @@ class Spotify:
     def __create_token(self, username, client_id, client_secret, redirect_uri):
         return util.prompt_for_user_token(
             username,
+            'user-read-currently-playing user-read-playback-state',
             client_id=settings.SPOTIFY_CLIENT_ID,
             client_secret=settings.SPOTIFY_CLIENT_SECRET,
             redirect_uri=settings.SPOTIFY_REDIRECT_URI)
@@ -38,4 +39,7 @@ class Spotify:
         return self.client.me()
 
     def get_playlists(self, user_id):
-        return self.__handle_pagination(self.client.user_playlists(user_id)) 
+        return self.__handle_pagination(self.client.user_playlists(user_id))
+    
+    def get_current_song(self):
+        return self.client.current_playback()
