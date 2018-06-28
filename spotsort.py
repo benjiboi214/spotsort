@@ -76,3 +76,18 @@ class Listen:
 # - categorise song
 # - Write Categories to data structure
 
+## Data Model
+# Song
+# - Genre 
+# - - Many genres to one song
+# - Sub Genre
+# - - Many sub genres to one song
+# - Energy
+# - - One Energy to One Song
+# - Environment
+# - - Where would I play it?
+# - - Where does it suit?
+# - Elements
+# - - Bass
+# - - Pace
+# - - Vocals
