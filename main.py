@@ -1,8 +1,8 @@
 import click
 
 import settings
-import spotify
-import spotsort
+from spotify import Spotify
+from spotsort import SpotSort
 
 @click.group()
 @click.option('--username', default=settings.DEFAULT_USER, help='Username to authenticate as')
@@ -15,14 +15,11 @@ def cli(ctx, username):
 def current_song(ctx):
     ss = spotsort.SpotSort(spotify_client = spotify.Spotify(ctx.obj['username']))
     
-
 @cli.command()
 @click.pass_context
 def playlist_sort(ctx):
-    ss = spotsort.SpotSort(spotify_client = spotify.Spotify(ctx.obj['username']))
-    ss.user_playlists = ss.spotify_client.get_playlists(ss.user_profile['id'])
-
-    ss.get_playlist_selection(ss.user_playlists)
+    ss = SpotSort(spotify_client = Spotify(ctx.obj['username']))
+    ss.start_playlist_sort_session()
 
 @cli.command()
 def test_django():
@@ -47,6 +44,9 @@ def test_django():
 
     print(first_user.name)
     print(first_user.email)
+    ss = SpotSort(spotify_client = Spotify(ctx.obj['username']))
+    ss.start_this_song_session()
+
 
 if __name__ == '__main__':
     cli(obj={})
