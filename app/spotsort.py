@@ -52,9 +52,13 @@ class SpotSort:
     def start_this_song_session(self):
         current = self.spotify_client.get_current_song()
         import pprint
+        import json
         pp = pprint.PrettyPrinter(indent=4)
         pp.pprint(current)
-        # print(current)
+        print(json.dumps(current))
+        album = self.spotify_client.client.album(current['item']['album']['uri'])
+        pp.pprint(album)
+        print(json.dumps(album))
         pass
 
 
