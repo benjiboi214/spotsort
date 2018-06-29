@@ -1,8 +1,8 @@
 import click
 
 import settings
-from spotify import Spotify
-from spotsort import SpotSort
+from app.spotify import Spotify
+from app.spotsort import SpotSort
 
 @click.group()
 @click.option('--username', default=settings.DEFAULT_USER, help='Username to authenticate as')
