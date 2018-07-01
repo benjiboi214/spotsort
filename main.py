@@ -37,14 +37,13 @@ def test_django():
 
 
     #Add user
-    user = User(name="masnun", email="masnun@gmail.com")
+    user = User(username="benjiboi214")
     user.save()
 
     # Application logic
     first_user = User.objects.all()[0]
 
-    print(first_user.name)
-    print(first_user.email)
+    print(first_user.username)
 
 
 if __name__ == '__main__':
